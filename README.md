@@ -2,10 +2,10 @@
 _A tool to create valid crossword puzzle grids!_
 
 ## Description
-This code, written in Python, will output an image of a valid (psuedo-)randomly generated crossword grid. Although there may be no stringent definition of what makes a crossword puzzle layout 'valid,' in this particular instance it means that the grid adheres to [construction guidelines] (https://www.nytimes.com/crosswords/submissions) as outlined by the New York Times. In summary, the criteria are:
+This code, written in Python, will output an image of a valid (psuedo-)randomly generated crossword grid. Although there may be no stringent definition of what makes a crossword puzzle layout 'valid,' in this particular instance it means that the grid adheres to [construction guidelines](https://www.nytimes.com/crosswords/submissions) as outlined by the New York Times. In summary, the criteria are:
 * grid size
-  - 15 x 15, what I refer to as 'small'
-  - 21 x 21, what I refer to as 'large'
+  - 15 x 15 (i.e., small)
+  - 21 x 21 (i.e., large)
 * minimum word length: 3 letters
 * symmetry about the origin, or center, of the puzzle
 The repository includes an example of an output for each puzzle size, [small](xword_example_small.png) and [large](xword_example_large.png).
@@ -33,12 +33,12 @@ xword_generator.xword_image_gen(size=None, max_word_len=None, max_black_len=None
   - the maximum number of black squares that can be generated in the first row of the puzzle, influencing how the rest of the puzzle will unfold
   - default max\_black\_len=4
 * save\_name
-  - a string indicating the name of the output file where the image will be saved in the directory. **Will overwrite exiting file of same name.** Name must be string type, and end in ".png"
+  - a string indicating the name of the output file where the image will be saved in the directory. **Will overwrite existing file of the same name.** Name must be string type, and end in ".png"
   - default save\_name="xword\_out.png"
 
 ## Future work
-As both a crossword enthusiast and amatuer programmer, I embarked on writing this code to exercise my coding ability, and also get myself one step closer to eventually submitting my own crossword to be considered for publishing in the NYT! To both ends, I plan to continue to work on this repository. Some of my current ideas on future work include:
-* specifiying maximum number of words in the puzzle. The NYT consturciton guidelines give maximum word counts for puzzles based on size. Cursory investigation seems to indicate that this criteria is typically met, but further constraints should be outlined to ensure.
+As both a crossword enthusiast and amatuer programmer, I embarked on writing this code to exercise my coding ability, and also get myself one step closer to eventually submitting my own crossword to be considered for publishing in the NYT! *stares off whistfully...* To both ends, I plan to continue to work on this repository. Some of my current ideas on future work include:
+* specifiying maximum number of words in the puzzle. The NYT consturciton guidelines give maximum word counts for puzzles based on size. Cursory investigation seems to indicate that this criterion is typically met, but further constraints should be outlined to ensure.
   - 15 x 15 (themed): 78 words
   - 15 x 15 (themeless): 72 words
   - 21 x 21 (always themed): 140 words
