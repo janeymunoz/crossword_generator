@@ -14,4 +14,5 @@ Pipfile
 # personal
 *.txt
 *.DS_Store
-*_test
+*test.py
+*test.txt
