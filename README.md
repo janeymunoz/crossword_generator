@@ -39,13 +39,13 @@ xword_generator.xword_image_gen(size=None, max_word_len=None, max_black_len=None
 
 ## Future work
 As both a crossword enthusiast and amatuer programmer, I embarked on writing this code to exercise my coding ability, and also get myself one step closer to eventually submitting my own crossword to be considered for publishing in the NYT! *stares off whistfully...* To both ends, I plan to continue to work on this repository. Some of my current ideas on future work include:
-* specifiying maximum number of words in the puzzle. The NYT consturciton guidelines give maximum word counts for puzzles based on size. Cursory investigation seems to indicate that this criterion is typically met, but further constraints should be outlined to ensure.
+* specifiying maximum number of words in the puzzle. The NYT construction guidelines give maximum word counts for puzzles based on size. Cursory investigation seems to indicate that this criterion is typically met, but further constraints should be outlined to ensure
   - 15 x 15 (themed): 78 words
   - 15 x 15 (themeless): 72 words
   - 21 x 21 (always themed): 140 words
 * specifying themed versus themeless for small puzzles (similar to previous bullet)
-* adding more options for a tailored output. For example, being able to specify that the four longest clues are 15 squares in length.
+* adding more options for a tailored output. For example, being able to specify that the four longest clues are 15 squares in length
 * debugging. There appears to be a bug where the "compare\_look" function returns a NoneType object, halting the crossword output altogether
-* generating words to fill puzzle. Given zero or more words to be included in the puzzle, use a dictionary to fill the rest of the puzzle with valid word combinations.
-* generating an answer key from words included in the puzzle.
-* generating clues for words based on existing crosswords available on the internet.
+* generating words to fill puzzle. Given zero or more words to be included in the puzzle, use a dictionary to fill the rest of the puzzle with valid word combinations
+* generating an answer key from words included in the puzzle
+* generating clues for words based on existing crosswords available on the internet
