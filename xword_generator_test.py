@@ -89,6 +89,12 @@ def look_left(row, index):
     val_3 = row[index - 3]
     if index < min_word_len:
         if val_1 == 0:
+            # if val_2 == 0:
+            #     on_or_off = 2
+            # elif val_2 == 1:
+            #     on_or_off = 1
+            # else:  # val_2 == None
+            #    on_or_off = 2
             on_or_off = 2
         else:  # val_1 == 1
             on_or_off = 1
@@ -218,6 +224,15 @@ def look_up(matrix, row_num, index):
                                 on_or_off = 1
                             else:  # vald_3 == 1
                                 on_or_off = 2
+        print("row =", row_num)
+        print("index =", index)
+        print("val_1 =", val_1)
+        print("val_2 =", val_2)
+        print("val_3 =", val_3)
+        print("vald_1 =", vald_1)
+        print("vald_2 =", vald_2)
+        print("vald_3 =", vald_3)
+        print("output returned =", on_or_off)
     return on_or_off
 
 
@@ -262,10 +277,19 @@ def look_compare(xword, i, j, up, left):
                     val = 1
                 elif left == 1:
                     val = 1
+                else:  # left == 0
+                    # Should be impossible.
+                    for row in xword:
+                        print(row)
+                    print("left 0, up 1. should be impossible.\
+                          i =", i, "j =", j)
     # Center row.
     elif i == num_rows // 2:
         # Get first half of center row.
         if j < num_sqr // 2:
+            print("center row, j =", j)
+            print("left =", left)
+            print("up =", up)
             if j == 0:
                 if up == 4:
                     val = 1
@@ -303,6 +327,7 @@ def look_compare(xword, i, j, up, left):
                     elif up == 3:
                         val = 0
                         val_l = 5
+                        print("up = 3, left = 1. should be impossible")
                     elif up == 2:
                         val = 1
                     elif up == 1:
@@ -311,15 +336,22 @@ def look_compare(xword, i, j, up, left):
                         val = 1
                         vald_1 = 1
                 else:  # left == 0
-                    if up == 3:
+                    if up == 4:
+                        print("up = 4, left = 0, should be impossible")
+                    elif up == 3:
                         val = 0
                         vald_1 = 0
                     elif up == 2:
                         val = 0
+                    elif up == 1:
+                        print("up = 1, left = 0, should be impossible")
                     else:  # up == 0
                         val = 0
         # Very center square of puzzle.
         elif j == num_sqr // 2:
+            print("center row, j =", j)
+            print("left =", left)
+            print("up =", up)
             if xword[i][j - 1] == 0:
                 val = 0
                 if up == 1:
@@ -340,6 +372,7 @@ def look_compare(xword, i, j, up, left):
                         val = 1
                 else:
                     val = 1
+            print("square output at this index was", val)
     try:
         return_vals.append(val)
         return_vals.append(vald_1)
@@ -350,10 +383,11 @@ def look_compare(xword, i, j, up, left):
         try:
             return_vals.append(val_l)
         except NameError:
+            print(return_vals)
             return return_vals
 
 
-def xword_matrix_gen(size=None, max_word_len=None, max_black_len=None):
+def xword_grid_gen(size=None, max_word_len=None, max_black_len=None):
     '''Generates a 'vald' crossword grid.
     Valid crossword specifications:
         - 15x15 or 21x21 grid (size="s" or "l")
@@ -408,27 +442,16 @@ def xword_matrix_gen(size=None, max_word_len=None, max_black_len=None):
                 # Mirror reverse of row to opposite side of crossword.
                 if j == num_sqr - 1:
                     xword[-1 * i - 1] = xword[i][::-1]
+                    print(xword[i])
             else:  # i > num_rows // 2
                 # Copy row before center to ensure any changes are included.
                 xword[i] = xword[i - 2][::-1]
-    # Check center squares.
-    if xword[num_rows // 2 - 1][num_sqr // 2 - 1:num_sqr // 2 + 2] \
-            == [0, 1, 0]:
-        if look_up(xword, num_rows // 2 - 1, num_sqr // 2 - 1) == 2:
-            xword[num_rows // 2 - 1][num_sqr // 2 - 1] = 0
-            xword[num_rows // 2 + 1][num_sqr // 2 + 1] = 0
-        else:
-            if look_left(xword[num_rows // 2 - 1], num_sqr // 2 - 1) == 0:
-                xword[num_rows // 2 - 1][num_sqr // 2 + 1] = 1
-                xword[num_rows // 2 + 1][num_sqr // 2 - 1] = 1
-            else:
-                xword[num_rows // 2 - 1][num_sqr // 2 - 1] = 1
-                xword[num_rows // 2 + 1][num_sqr // 2 + 1] = 1
+    for row in xword:
+        print(row)
     return xword
 
 
-def xword_image_gen(size=None, max_word_len=None,
-                    max_black_len=None, save_name=None):
+def xword_gen(size=None, max_word_len=None, max_black_len=None):
     from PIL import Image, ImageDraw, ImageFont
     # Handle default argument assignments.
     variables = xword_args(size, max_word_len, max_black_len)
@@ -436,10 +459,17 @@ def xword_image_gen(size=None, max_word_len=None,
     max_word_len = variables[1]
     max_black_len = variables[2]
     # Generate crossword based on arguments given.
-    xword_temp = xword_matrix_gen(size=size, max_word_len=max_word_len,
-                                  max_black_len=max_black_len)
+    xword_temp = xword_grid_gen(size=size, max_word_len=max_word_len,
+                                max_black_len=max_black_len)
     # Set square size based on NYT guidelines.
     sqr_size = 35
+    # Check size argument and assign step_count for gridline spacing.
+    if size.lower() == "s":
+        step_count = 15
+    elif size.lower() == "l":
+        step_count = 21
+    else:
+        raise ValueError('Size options are small and large, args "S" or "L".')
     # Get height and width of grid variables.
     h_and_w = num_sqr * sqr_size + (num_sqr + 1)
     # Make new image as a template to draw grid upon, using PIL (Pillow).
@@ -478,7 +508,7 @@ def xword_image_gen(size=None, max_word_len=None,
                         draw.text(xy_text, str(clue_num), fill=0,
                                   font=text_font)
                         clue_num += 1
-                    elif j + 1 == num_sqr:
+                    elif j + 1 == step_count:
                         if xword_temp[i - 1][j] == 0:
                             draw.text(xy_text, str(clue_num), fill=0,
                                       font=text_font)
@@ -494,10 +524,7 @@ def xword_image_gen(size=None, max_word_len=None,
             x_start = end[0]
         y_start += xy_step_size
     del draw
-    # Save image to current directory.
-    if save_name is None:
-        save_name = 'xword_out.png'
-    else:
-        if not save_name.endswith('.png'):
-            save_name += '.png'
-    image.save(save_name)
+    image.show()
+
+
+xword_gen("s")
