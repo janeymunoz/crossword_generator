@@ -1,0 +1,17 @@
+# swap
+[._]*.s[a-v][a-z]
+[._]*.sw[a-p]
+[._]s[a-v][a-z]
+[._]s[a-p]
+
+# byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+# pipenv
+Pipfile
+
+# personal
+*.txt
+*.DS_Store
+*test.py
