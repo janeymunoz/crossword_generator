@@ -7,7 +7,8 @@ This code, written in Python, will output an image of a valid (psuedo-)randomly 
   - 15 x 15 (i.e., small)
   - 21 x 21 (i.e., large)
 * minimum word length: 3 letters
-* symmetry about the origin, or center, of the puzzle
+* symmetry about the origin, or center, of the puzzle.
+
 The repository includes an example of an output for each puzzle size, [small](xword_example_small.png) and [large](xword_example_large.png).
 
 ## How to use it
