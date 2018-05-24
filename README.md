@@ -13,13 +13,13 @@ The repository includes an example of an output for each puzzle size, [small](xw
 
 ## How to use it
 This crossword generator requires Python 3.6 and Pillow 5.1.0 (PIL Fork). 
-After cloning or downloading the repository, the function `xword_image_gen` is all that needs to be run in order to produce your crossword grid!
-If you have the required dependencies and have the repository on your computer, the following script run from the directory in which the repository is saved will save a .png image file into the repository directory. 
+After cloning or downloading the repository, the crossword generator can be used simply by calling the file with python!
 ```
-$ python -c 'import xword_generator; xword_generator.xword_image_gen()'
+$ python xword_generator.py
 ```
+After running the script you will be given a series of prompts to determine what size crossword the program will generate and what the name of the output .png image file will be. The image file will be saved into the directory from which the script was run. 
 ### Syntax
-If no arguments are given to the `xword_image_gen` function, as shown above, default arguments will be used. Following is the syntax for **xword_image_gen()**:
+If the script is run as shown above, size and output file name may be specified; however, there are two other parameters that can be modified to influence the crossword that is generated. Following is the syntax for **xword_image_gen()**:
 ```
 xword_generator.xword_image_gen(size=None, max_word_len=None, max_black_len=None, save_name=None)
 ```

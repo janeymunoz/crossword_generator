@@ -501,3 +501,51 @@ def xword_image_gen(size=None, max_word_len=None,
         if not save_name.endswith('.png'):
             save_name += '.png'
     image.save(save_name)
+
+
+if __name__ == '__main__':
+    def ask_input(msg, input_type):
+        '''General input requisition function'''
+        arg_input = None
+        while arg_input is None:
+            arg_input = input(msg)
+            if arg_input == '':
+                y_n = input('No input given. Would you like to re-enter an input? If not, a default value will be used. Enter "y" to re-enter an input, or "n" to use the default value.\n')
+                if y_n.lower() == "y":
+                    arg_input = ask_input(msg, input_type)
+                else:  # y_n == "n"
+                    arg_input = None
+            if input_type == 'integer':
+                if arg_input.isdigit():
+                    arg_input = int(arg_input)
+                else:  # Invalid input.
+                    print('Invalid input. Input must be an integer.\n')
+                    arg_input = ask_input(msg, input_type)
+            else:  # input_type == 'string'
+                if arg_input is None:
+                    return arg_input
+                else:
+                    if arg_input.isdigit():
+                        print('Invalid input. Input must be an alphabetic string.')
+                        arg_input = ask_input(msg, input_type)
+        return arg_input
+
+    def call_xword():
+        '''Call for xword generator inputs with ask_input().'''
+        print('Thanks for using this crossword generator!\nEnter "exit" to terminate this program at any time.\n')
+        size_msg = 'What size puzzle do you want generated? Enter "S" for a 15 x 15 puzzle, or "L" for a 21 x 21 puzzle.\n'
+        save_name_msg = 'A .png image file will be saved in the directory from which you ran this program - Please enter a name for this file.\n'
+        size = ask_input(size_msg, 'string')
+        if size == "exit":
+            return
+        else:
+            save_name = ask_input(save_name_msg, 'string')
+            if save_name == "exit":
+                return
+            else:
+                xword_image_gen(size=size, max_word_len=None,
+                                max_black_len=None, save_name=save_name)
+                print('Your crossword grid is generated! Happy puzzling!')
+        return
+
+    call_xword()
